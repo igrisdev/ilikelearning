@@ -1,7 +1,9 @@
+import Link from 'next/link'
+
 export default function Home() {
   return (
     <div>
-      <button className='btn btn-primary'>Home</button>
+      <Link href='/read/1'>About</Link>
     </div>
   )
 }
