@@ -1,10 +1,11 @@
+import { useSearchStore } from '@stores/searchStore'
+
 export const Dictionary = () => {
+  const { word, apiUrl } = useSearchStore()
+
   return (
     <div className='w-full h-full'>
-      <iframe
-        src='https://www.wordreference.com/es/translation.asp?tranword=happy'
-        className='w-full h-full'
-      ></iframe>
+      <iframe src={`${apiUrl}${word}`} className='w-full h-full'></iframe>
     </div>
   )
 }
