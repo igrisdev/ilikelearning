@@ -1,9 +1,10 @@
 ---
+import { AddWord } from '@components_functional/AddWord'
 import { Dictionary } from '@components_functional/Dictionary'
 ---
 
 <section class='flex flex-col gap-y-2'>
-  <div>Add a new word</div>
+  <AddWord client:load />
 
   <Dictionary client:load />
 </section>
