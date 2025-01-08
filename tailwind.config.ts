@@ -13,6 +13,14 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      container: {
+        screens: {
+          xl: "1280px",
+        },
+        padding: {
+          DEFAULT: "1rem",
+        }
+      }
     },
   },
   plugins: [daisyui],

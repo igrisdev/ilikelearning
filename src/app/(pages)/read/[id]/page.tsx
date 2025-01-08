@@ -1,9 +1,10 @@
+import { ReadText } from '@/sections/ReadText'
+
 export default function page() {
   return (
-    <section className='grid h-full grid-cols-2'>
-      <div>Read</div>
-      <div>Dictionary</div>
-      <div className='p-4 pt-2'></div>
+    <section className='grid h-full grid-cols-2 gap-6'>
+      <ReadText />
+      <div className=''>Dictionary</div>
     </section>
   )
 }
