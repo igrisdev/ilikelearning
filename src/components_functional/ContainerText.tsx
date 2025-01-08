@@ -1,0 +1,91 @@
+export const ContainerText = () => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLSpanElement
+    if (target.tagName === 'SPAN') {
+      console.log(target.textContent)
+    }
+  }
+
+  return (
+    <div
+      onClick={handleClick}
+      className='flex flex-wrap gap-x-1 bg-base-300 p-2 rounded-sm'
+    >
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Hola</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Hola</span>
+      <span>Mundo</span>
+      <span>👋</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Hola</span>
+      <span>Mundo</span>
+      <span>👋</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Hola</span>
+      <span>Mundo</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+      <span>Mundo</span>
+      <span>👋</span>
+      <span>Es</span>
+      <span>un</span>
+      <span>ejemplo</span>
+      <span>de</span>
+      <span>texto</span>
+    </div>
+  )
+}
