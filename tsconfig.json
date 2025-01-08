@@ -11,6 +11,7 @@
       "@components_functional/*": ["src/components_functional/*"],
       "@assets/*": ["src/assets/*"],
       "@services/*": ["src/services/*"],
+      "@stores/*": ["src/stores/*"],
       "@layouts/*": ["src/layouts/*"]
     },
     "jsx": "react-jsx",
