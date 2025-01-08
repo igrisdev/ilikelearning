@@ -1,6 +1,7 @@
 ---
-import ReactText from '@services/ReactText.astro'
+import Functionalities from '@services/Functionalities.astro'
 import Layout from '../layouts/Layout.astro'
+import ReadText from '@services/ReadText.astro'
 ---
 
 <Layout>
@@ -8,15 +9,8 @@ import Layout from '../layouts/Layout.astro'
     <h1>I 💙 Learning</h1>
   </header>
   <div class='grid grid-cols-2 gap-6 p-2 h-screen'>
-    <ReactText />
+    <ReadText />
 
-    <section class='flex flex-col gap-y-2'>
-      <div>Add a new word</div>
-      <div class='w-full h-full'>
-        <iframe
-          src='https://www.wordreference.com/es/translation.asp?tranword=happy'
-          class='w-full h-full'></iframe>
-      </div>
-    </section>
+    <Functionalities />
   </div>
 </Layout>
