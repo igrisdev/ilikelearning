@@ -1,7 +1,9 @@
+import { useConfigStore } from '@stores/configStore'
 import { useSearchStore } from '@stores/searchStore'
 
 export const ContainerText = () => {
   const { searchWord } = useSearchStore()
+  const { view, setView } = useConfigStore()
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLSpanElement
@@ -9,6 +11,8 @@ export const ContainerText = () => {
       console.log(target.textContent)
 
       if (target.textContent) searchWord(target.textContent)
+
+      if (view !== 'DICTIONARY') setView('DICTIONARY')
     }
   }
 
