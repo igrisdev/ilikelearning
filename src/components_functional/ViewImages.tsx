@@ -26,7 +26,7 @@ export const ViewImages = () => {
   return (
     <div className='flex flex-wrap gap-2'>
       {images.map(({ src }: { src: { small: string } }) => (
-        <article>
+        <article key={src.small}>
           <img src={src.small} />
         </article>
       ))}
