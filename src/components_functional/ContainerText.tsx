@@ -8,8 +8,6 @@ export const ContainerText = () => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLSpanElement
     if (target.tagName === 'SPAN') {
-      console.log(target.textContent)
-
       if (target.textContent) searchWord(target.textContent)
 
       if (view !== 'DICTIONARY') setView('DICTIONARY')
