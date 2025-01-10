@@ -8,12 +8,9 @@ export const AddWord = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-semibold'>
+      <h2 className='flex justify-between items-center text-2xl font-semibold'>
         {word ? word : 'Click on the word'}
-        <button
-          onClick={() => setView('IMAGES')}
-          className='ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-        >
+        <button onClick={() => setView('IMAGES')} className='btn btn-primary'>
           View Images
         </button>
       </h2>

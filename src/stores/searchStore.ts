@@ -7,7 +7,6 @@ type SearchStore = {
   searchWord: (word: string) => void
 }
 
-// %22${word}%22
 export const useSearchStore = create<SearchStore>()((set) => ({
   word: '',
   dictionaryUrl: 'https://www.wordreference.com/es/translation.asp?tranword=',
