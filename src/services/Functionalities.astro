@@ -1,10 +1,13 @@
 ---
 import { AddWord } from '@components_functional/AddWord'
 import { Dictionary } from '@components_functional/Dictionary'
+import { ViewImages } from '@components_functional/ViewImages'
 ---
 
 <section class='flex flex-col gap-y-2'>
   <AddWord client:load />
 
-  <Dictionary client:load />
+  <!-- <Dictionary client:load /> -->
+
+  <ViewImages client:load />
 </section>
