@@ -10,6 +10,13 @@ export const AddWord = () => {
     if (view !== 'IMAGES') setView('IMAGES')
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+
+    console.log(formData)
+  }
+
   return (
     <div>
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
@@ -18,7 +25,35 @@ export const AddWord = () => {
           View Images
         </button>
       </h2>
-      <form action=''></form>
+      <form onSubmit={handleSubmit}>
+        <input type='hidden' name='word' value={word} />
+        <div>
+          <label htmlFor='category'>Category</label>
+          <input
+            type='text'
+            name='category'
+            id='category'
+            placeholder='Category'
+          />
+        </div>
+
+        <div>
+          <label htmlFor='translation'>Translation</label>
+          <input
+            type='text'
+            name='translation'
+            id='translation'
+            placeholder='Translation'
+          />
+        </div>
+
+        <div>
+          <label htmlFor='image'>Image</label>
+          <img src='' alt='' />
+        </div>
+
+        <button className='btn btn-primary'>Add Word</button>
+      </form>
     </div>
   )
 }
