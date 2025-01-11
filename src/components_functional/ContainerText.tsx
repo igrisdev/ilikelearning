@@ -15,52 +15,51 @@ export const ContainerText = () => {
   }
 
   return (
-    <div
-      onClick={handleClick}
-      className='flex flex-wrap gap-x-1 bg-base-300 p-2 rounded-sm'
-    >
-      <span>Hello</span>
-      <span>World</span>
-      <span>This</span>
-      <span>is</span>
-      <span>a</span>
-      <span>test</span>
-      <span>text</span>
-      <span>to</span>
-      <span>see</span>
-      <span>if</span>
-      <span>the</span>
-      <span>click</span>
-      <span>event</span>
-      <span>works</span>
-      <span>Hello</span>
-      <span>World!</span>
-      <span>This</span>
-      <span>is</span>
-      <span>a</span>
-      <span>test</span>
-      <span>text</span>
-      <span>to</span>
-      <span>see</span>
-      <span>if</span>
-      <span>the</span>
-      <span>click</span>
-      <span>event</span>
-      <span>works</span>
-      <span>Hello</span>
-      <span>World</span>
-      <span>This</span>
-      <span>is</span>
-      <span>a</span>
-      <span>test</span>
-      <span>text</span>
-      <span>to</span>
-      <span>see</span>
-      <span>if</span>
-      <span>the</span>
-      <span>click</span>
-      <span>event</span>
-      <span>works</span>
+    <div onClick={handleClick} className='bg-base-300 p-2 rounded-sm'>
+      <p className='flex flex-wrap gap-1'>
+        <span>Hello</span>
+        <span>World</span>
+        <span>This</span>
+        <span>is</span>
+        <span>a</span>
+        <span>test</span>
+        <span>text</span>
+        <span>to</span>
+        <span>see</span>
+        <span>if</span>
+        <span>the</span>
+        <span>click</span>
+        <span>event</span>
+        <span>works</span>
+        <span>Hello</span>
+        <span>World</span>
+        <span>This</span>
+        <span>is</span>
+        <span>a</span>
+        <span>test</span>
+        <span>text</span>
+        <span>to</span>
+        <span>see</span>
+        <span>if</span>
+        <span>the</span>
+        <span>click</span>
+        <span>event</span>
+        <span>works</span>
+        <span>Hello</span>
+        <span>World</span>
+        <span>This</span>
+        <span>is</span>
+        <span>a</span>
+        <span>test</span>
+        <span>text</span>
+        <span>to</span>
+        <span>see</span>
+        <span>if</span>
+        <span>the</span>
+        <span>click</span>
+        <span>event</span>
+        <span>works</span>
+      </p>
     </div>
   )
 }
