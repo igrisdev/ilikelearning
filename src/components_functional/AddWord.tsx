@@ -38,6 +38,14 @@ export const AddWord = () => {
         </div>
 
         <div>
+          <label htmlFor='level'>Level</label>
+
+          <input type='radio' name='level' value='1' />
+          <input type='radio' name='level' value='2' />
+          <input type='radio' name='level' value='3' />
+        </div>
+
+        <div>
           <label htmlFor='translation'>Translation</label>
           <input
             type='text'
