@@ -5,7 +5,7 @@ import { useSearchStore } from '@stores/searchStore'
 export const AddWord = () => {
   const { word } = useSearchStore()
   const { view, setView, language } = useConfigStore()
-  const { languages, addWord } = useLanguagesStore()
+  const { addWord } = useLanguagesStore()
 
   const handleView = () => {
     if (view !== 'IMAGES') setView('IMAGES')
@@ -23,7 +23,9 @@ export const AddWord = () => {
       image: formData.get('image') as string,
     }
 
-    addWord(word, 'ff')
+    addWord(word, language)
+
+    event.currentTarget.reset()
   }
 
   return (
