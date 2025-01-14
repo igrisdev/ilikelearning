@@ -1,10 +1,11 @@
 import { useConfigStore } from '@stores/configStore'
+import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 
 export const AddWord = () => {
   const { word } = useSearchStore()
-
-  const { view, setView } = useConfigStore()
+  const { view, setView, language } = useConfigStore()
+  const { languages, addWord } = useLanguagesStore()
 
   const handleView = () => {
     if (view !== 'IMAGES') setView('IMAGES')
@@ -14,7 +15,15 @@ export const AddWord = () => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
 
-    console.log(formData)
+    const word = {
+      word: formData.get('word') as string,
+      translation: formData.get('translation') as string,
+      level: Number(formData.get('level')) as number,
+      category: formData.get('category') as string,
+      image: formData.get('image') as string,
+    }
+
+    addWord(word, 'ff')
   }
 
   return (
