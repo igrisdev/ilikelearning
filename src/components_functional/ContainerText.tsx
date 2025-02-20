@@ -1,39 +1,53 @@
 import { useConfigStore } from '@stores/configStore'
 import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
+import { useEffect, useState } from 'react'
 
-const sentences = [
-  ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
-  ['to', 'see', 'if', 'the', 'click', 'event', 'works'],
-  ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
-]
+// const sentences = [
+//   ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
+//   ['to', 'see', 'if', 'the', 'click', 'event', 'works'],
+//   ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
+// ]
 
 export const ContainerText = () => {
-  const { searchWord } = useSearchStore()
+  const { word, searchWord } = useSearchStore()
   const { view, setView } = useConfigStore()
   const { languages } = useLanguagesStore()
+  const [selectedWord, setSelectedWord] = useState('')
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLSpanElement
-    if (target.tagName === 'SPAN') {
-      if (target.textContent) searchWord(target.textContent)
+  const handleClick = () => {
+    const selection = window.getSelection()
+    if (!selection || !selection.rangeCount) return
+
+    const range = selection.getRangeAt(0)
+    const node = range.startContainer
+    const offset = range.startOffset
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent
+      if (!text) return
+
+      let before = text.slice(0, offset).split(/\s+/)
+      let after = text.slice(offset).split(/\s+/)
+
+      let word = (before.pop() || '') + (after.shift() || '')
+      word = word.replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
+
+      if (word) {
+        searchWord(word)
+      }
 
       if (view !== 'DICTIONARY') setView('DICTIONARY')
     }
   }
-
   return (
-    <div
-      onClick={handleClick}
-      className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'
-    >
-      {sentences.map((sentence, index) => (
-        <p key={index}>
-          {sentence.map((word, index) => (
-            <span key={index}>{word}</span>
-          ))}
-        </p>
-      ))}
+    <div className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'>
+      <p onClick={handleClick} className='cursor-pointer text-lg'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore magnam
+        quis, voluptatibus consequatur odio maiores cum molestias sint
+        repudiandae, eaque commodi similique numquam exercitationem quo
+        recusandae pariatur mollitia temporibus fuga. I'm.
+      </p>
     </div>
   )
 }
