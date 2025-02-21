@@ -40,6 +40,7 @@ export const ContainerText = () => {
       if (view !== 'DICTIONARY') setView('DICTIONARY')
     }
   }
+
   return (
     <div className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'>
       <p onClick={handleClick} className='cursor-pointer text-lg'>
