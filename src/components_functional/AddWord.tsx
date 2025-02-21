@@ -68,7 +68,7 @@ export const AddWord = () => {
 
         <div>
           <label htmlFor='image'>Image</label>
-          <img src='' alt='' />
+          {/* <img src='' alt='' /> */}
         </div>
 
         <button className='btn btn-primary'>Add Word</button>
