@@ -1,7 +1,7 @@
 import { useSearchStore } from '@stores/searchStore'
 
 export const Dictionary = () => {
-  const { word, dictionaryUrl } = useSearchStore()
+  const { words, dictionaryUrl } = useSearchStore()
 
   const text = 'casa'
   fetch(
@@ -18,7 +18,7 @@ export const Dictionary = () => {
   return (
     <div className='w-full h-full'>
       {/* <iframe
-        src={`${dictionaryUrl}${word}`}
+        src={`${dictionaryUrl}${words}`}
         className='w-full h-full'
       ></iframe> */}
       hola

@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 
 export const ViewImages = () => {
   const [images, setImages] = useState([])
-  const { word, imagesUrl } = useSearchStore()
+  const { words, imagesUrl } = useSearchStore()
 
-  const fetchImages = async (word: string) => {
-    const response = await fetch(imagesUrl + word, {
+  const fetchImages = async (words: string) => {
+    const response = await fetch(imagesUrl + words, {
       method: 'GET',
       headers: {
         Authorization:
@@ -18,10 +18,10 @@ export const ViewImages = () => {
   }
 
   useEffect(() => {
-    if (!word) return
+    if (!words) return
 
-    fetchImages(word)
-  }, [word])
+    fetchImages(words)
+  }, [words])
 
   return (
     <div className='flex flex-wrap gap-2'>

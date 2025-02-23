@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 // ]
 
 export const ContainerText = () => {
-  const { word, searchWord } = useSearchStore()
+  const { words, searchWord } = useSearchStore()
   const { view, setView } = useConfigStore()
   const { languages } = useLanguagesStore()
   const [selectedWord, setSelectedWord] = useState('')
@@ -30,11 +30,11 @@ export const ContainerText = () => {
       let before = text.slice(0, offset).split(/\s+/)
       let after = text.slice(offset).split(/\s+/)
 
-      let word = (before.pop() || '') + (after.shift() || '')
-      word = word.replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
+      let words = (before.pop() || '') + (after.shift() || '')
+      words = words.replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
 
-      if (word) {
-        searchWord(word)
+      if (words) {
+        searchWord(words)
       }
 
       if (view !== 'DICTIONARY') setView('DICTIONARY')

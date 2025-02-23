@@ -5,7 +5,7 @@ type Languages = {
 }
 
 type Word = {
-  word: string
+  words: string
   translation: string
   level: number
   category: string
@@ -14,16 +14,16 @@ type Word = {
 
 type LanguagesStore = {
   languages: Languages
-  addWord: (word: Word, language: string) => void
+  addWord: (words: Word, language: string) => void
 }
 
 export const useLanguagesStore = create<LanguagesStore>()(set => ({
   languages: {},
-  addWord: (word: Word, language: string) =>
+  addWord: (words: Word, language: string) =>
     set(({ languages }) => ({
       languages: {
         ...languages,
-        [language]: [...(languages[language] || []), word],
+        [language]: [...(languages[language] || []), words],
       },
     })),
 }))

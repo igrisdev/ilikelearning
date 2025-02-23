@@ -3,7 +3,7 @@ import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 
 export const AddWord = () => {
-  const { word } = useSearchStore()
+  const { words } = useSearchStore()
   const { view, setView, language } = useConfigStore()
   const { addWord } = useLanguagesStore()
 
@@ -15,15 +15,15 @@ export const AddWord = () => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
 
-    const word = {
-      word: formData.get('word') as string,
+    const words = {
+      words: formData.get('words') as string,
       translation: formData.get('translation') as string,
       level: Number(formData.get('level')) as number,
       category: formData.get('category') as string,
       image: formData.get('image') as string,
     }
 
-    addWord(word, language)
+    addWord(words, language)
 
     event.currentTarget.reset()
   }
@@ -31,13 +31,13 @@ export const AddWord = () => {
   return (
     <div>
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
-        {word ? word : 'Click on the word'}
+        {words ? words : 'Click on the words'}
         <button onClick={handleView} className='btn btn-primary'>
           View Images
         </button>
       </h2>
       <form onSubmit={handleSubmit}>
-        <input type='hidden' name='word' value={word} />
+        <input type='hidden' name='words' value={words} />
         <div>
           <label htmlFor='category'>Category</label>
           <input
