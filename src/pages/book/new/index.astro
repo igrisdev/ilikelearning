@@ -1,0 +1,13 @@
+---
+import Layout from '@layouts/Layout.astro'
+
+import { FormCreateBook } from '@components_functional/FormCreateBook.tsx'
+---
+
+<Layout title='I 💙 Learning'>
+  <main class='p-2'>
+    <h1>Nuevo Book</h1>
+
+    <FormCreateBook client:load />
+  </main>
+</Layout>
