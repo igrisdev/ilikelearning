@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent, useEffect } from 'react'
 
-interface iBook {
+export interface iBook {
   title: string
   description: string
   language: string
