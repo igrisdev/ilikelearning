@@ -1,10 +1,12 @@
 ---
 import { ContainerText } from '@components_functional/ContainerText'
+
+const { title } = Astro.params
 ---
 
 <section class='flex flex-col gap-2'>
   <div class='flex justify-between items-center'>
-    <h1>Title Text</h1>
+    <h1 class='uppercase'>{title}</h1>
 
     <div>
       <button> Prev </button>
