@@ -33,7 +33,7 @@ export const ContainerText = ({ title }: { title: string }) => {
         searchWord(words)
       }
 
-      if (view !== 'IMAGES') setView('NULL')
+      if (view !== 'NULL') setView('NULL')
     }
   }
 
