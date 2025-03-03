@@ -2,6 +2,8 @@
 import { ContainerText } from '@components_functional/ContainerText'
 
 const { title } = Astro.params
+
+if (!title) return Astro.redirect('404')
 ---
 
 <section class='flex flex-col gap-2'>
@@ -15,5 +17,5 @@ const { title } = Astro.params
     </div>
   </div>
 
-  <ContainerText client:load />
+  <ContainerText client:load title={title} />
 </section>
