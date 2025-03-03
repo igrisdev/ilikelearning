@@ -1,16 +1,15 @@
-import { create } from "zustand";
+import { create } from 'zustand'
 
-
-type View = 'DICTIONARY' | 'IMAGES' | 'SENTENCES'
+type View = 'IMAGES' | 'NULL'
 
 type ConfigStore = {
-  view: View,
-  language: string,
+  view: View
+  language: string
   setView: (view: string) => void
 }
 
-export const useConfigStore = create<ConfigStore>()((set) => ({
-  view: 'DICTIONARY',
+export const useConfigStore = create<ConfigStore>()(set => ({
+  view: 'IMAGES',
   language: 'english',
   setView: (view: string) => set({ view: view as View }),
 }))

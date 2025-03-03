@@ -27,7 +27,7 @@ export const TableBooks = () => {
         </thead>
         <tbody>
           {books.map(book => (
-            <tr>
+            <tr key={book.title}>
               <td>
                 <a href={`/read/${book.title}`}>{book.title}</a>
               </td>

@@ -2,18 +2,14 @@ import { useConfigStore } from '@stores/configStore'
 import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 import { useEffect, useState } from 'react'
+import type { iBook } from './FormCreateBook'
 
-// const sentences = [
-//   ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
-//   ['to', 'see', 'if', 'the', 'click', 'event', 'works'],
-//   ['Hello', 'World', 'This', 'is', 'a', 'test', 'text'],
-// ]
-
-export const ContainerText = () => {
+export const ContainerText = ({ title }: { title: string }) => {
   const { words, searchWord } = useSearchStore()
   const { view, setView } = useConfigStore()
   const { languages } = useLanguagesStore()
   const [selectedWord, setSelectedWord] = useState('')
+  const [books, setBooks] = useState<iBook[]>([])
 
   const handleClick = () => {
     const selection = window.getSelection()
@@ -41,13 +37,23 @@ export const ContainerText = () => {
     }
   }
 
+  useEffect(() => {
+    const isBooks = JSON.parse(localStorage.getItem('books') as string) as {
+      listBooks: iBook[]
+    }
+
+    if (isBooks) {
+      const findBook = isBooks.listBooks.find(book => book.title === title)
+
+      if (!findBook) return
+      setBooks([findBook])
+    }
+  }, [])
+
   return (
     <div className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'>
       <p onClick={handleClick} className='cursor-pointer text-lg'>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore magnam
-        quis, voluptatibus consequatur odio maiores cum molestias sint
-        repudiandae, eaque commodi similique numquam exercitationem quo
-        recusandae pariatur mollitia temporibus fuga. I'm.
+        {books[0]?.description}
       </p>
     </div>
   )

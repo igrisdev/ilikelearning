@@ -1,15 +1,40 @@
 import { useConfigStore } from '@stores/configStore'
 import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
+import { useEffect, useState } from 'react'
 
 export const AddWord = () => {
-  const { words } = useSearchStore()
+  const { words, textTranslated, dictionaryUrl, setTextTranslated } =
+    useSearchStore()
   const { view, setView, language } = useConfigStore()
   const { addWord } = useLanguagesStore()
 
   const handleView = () => {
     if (view !== 'IMAGES') setView('IMAGES')
   }
+
+  const translateText = async (text: string) => {
+    const url = dictionaryUrl(text)
+
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+
+      if (data.responseData) {
+        console.log('Texto traducido:', data.responseData.translatedText)
+        setTextTranslated(data.responseData.translatedText)
+        return
+      } else {
+        throw new Error('No se pudo traducir el texto')
+      }
+    } catch (error) {
+      throw new Error('Error al conectar con el servidor')
+    }
+  }
+
+  useEffect(() => {
+    translateText(words || 'Bienvenido a I like learning')
+  }, [words])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -62,6 +87,7 @@ export const AddWord = () => {
             type='text'
             name='translation'
             id='translation'
+            defaultValue={textTranslated || ''}
             placeholder='Translation'
           />
         </div>

@@ -1,13 +1,11 @@
 import { useConfigStore } from '@stores/configStore'
 
-import { Dictionary } from '@components_functional/Dictionary'
 import { ViewImages } from '@components_functional/ViewImages'
 import { useEffect } from 'react'
 
 const VIEWS = {
-  DICTIONARY: <Dictionary />,
   IMAGES: <ViewImages />,
-  SENTENCES: <div>Sentences</div>,
+  NULL: <div></div>,
 }
 
 export const ViewSelected = () => {
