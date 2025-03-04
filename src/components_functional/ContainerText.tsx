@@ -42,8 +42,6 @@ export const ContainerText = ({ title }: { title: string }) => {
       listBooks: iBook[]
     }
 
-    console.log('isBooks', isBooks)
-
     if (isBooks) {
       const findBook = isBooks.listBooks.find(book => book.title === title)
 
