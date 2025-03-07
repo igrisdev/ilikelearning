@@ -56,7 +56,9 @@ export const AddWord = () => {
   return (
     <div>
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
-        {words ? words : 'Click on the words'}
+        <p className='text-3xl mb-2 font-bold text-white'>
+          {words ? words : 'Click on the words'}
+        </p>
         <button onClick={handleView} className='btn btn-primary'>
           Buscar Imagen
         </button>
@@ -67,14 +69,14 @@ export const AddWord = () => {
 
         <div className='mb-5'>
           <label
-            htmlFor='category'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            htmlFor='group'
+            className='block mb-2 text-sm font-medium text-gray-300'
           >
-            Category
+            Grupo de palabra
           </label>
           <input
             type='text'
-            id='category'
+            id='group'
             className='border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
           />
         </div>
@@ -82,7 +84,7 @@ export const AddWord = () => {
         <div className='mb-5'>
           <label
             htmlFor='level'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            className='block mb-2 text-sm font-medium text-gray-300'
           >
             Nivel de dificultad
           </label>
@@ -114,7 +116,7 @@ export const AddWord = () => {
         <div className='mb-5'>
           <label
             htmlFor='translation'
-            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            className='block mb-2 text-sm font-medium text-gray-300'
           >
             Traducción
           </label>
