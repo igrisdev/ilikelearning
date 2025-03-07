@@ -44,11 +44,13 @@ export const AddWord = () => {
       words: formData.get('words') as string,
       translation: formData.get('translation') as string,
       level: Number(formData.get('level')) as number,
-      category: formData.get('category') as string,
-      image: formData.get('image') as string,
+      group: formData.get('group') as string,
+      // image: formData.get('image') as string,
     }
 
     addWord(words, language)
+
+    console.log(words)
 
     event.currentTarget.reset()
   }
@@ -77,6 +79,8 @@ export const AddWord = () => {
           <input
             type='text'
             id='group'
+            name='group'
+            defaultValue={words || ''}
             className='border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
           />
         </div>
@@ -123,6 +127,7 @@ export const AddWord = () => {
           <input
             type='text'
             id='translation'
+            name='translation'
             defaultValue={textTranslated || ''}
             className='block w-full p-4 border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
           />

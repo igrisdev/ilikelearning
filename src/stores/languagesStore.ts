@@ -8,8 +8,8 @@ type Word = {
   words: string
   translation: string
   level: number
-  category: string
-  image: string
+  group: string
+  // image: string
 }
 
 type LanguagesStore = {
