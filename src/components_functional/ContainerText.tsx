@@ -19,6 +19,7 @@ export const ContainerText = ({ title }: { title: string }) => {
 
     if (isSelected) {
       searchWord(selection.toString())
+      if (view !== 'NULL') setView('NULL')
       return
     }
 
