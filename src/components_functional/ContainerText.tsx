@@ -15,6 +15,13 @@ export const ContainerText = ({ title }: { title: string }) => {
     const selection = window.getSelection()
     if (!selection || !selection.rangeCount) return
 
+    const isSelected = selection.toString().split(' ').length > 1
+
+    if (isSelected) {
+      searchWord(selection.toString())
+      return
+    }
+
     const range = selection.getRangeAt(0)
     const node = range.startContainer
     const offset = range.startOffset
