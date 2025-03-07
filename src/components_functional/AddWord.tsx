@@ -57,7 +57,7 @@ export const AddWord = () => {
     <div>
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
         <p className='text-3xl mb-2 font-bold text-white'>
-          {words ? words : 'Click on the words'}
+          {words ? words : 'Selecciona o Click en la/s palabra/s'}
         </p>
         <button onClick={handleView} className='btn btn-primary'>
           Buscar Imagen
