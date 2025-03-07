@@ -58,46 +58,75 @@ export const AddWord = () => {
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
         {words ? words : 'Click on the words'}
         <button onClick={handleView} className='btn btn-primary'>
-          View Images
+          Buscar Imagen
         </button>
       </h2>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit} className='mb-3'>
         <input type='hidden' name='words' value={words} />
-        <div>
-          <label htmlFor='category'>Category</label>
+
+        <div className='mb-5'>
+          <label
+            htmlFor='category'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Category
+          </label>
           <input
             type='text'
-            name='category'
             id='category'
-            placeholder='Category'
+            className='border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
           />
         </div>
 
-        <div>
-          <label htmlFor='level'>Level</label>
+        <div className='mb-5'>
+          <label
+            htmlFor='level'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Nivel de dificultad
+          </label>
 
-          <input type='radio' name='level' value='1' />
-          <input type='radio' name='level' value='2' />
-          <input type='radio' name='level' value='3' />
+          <div className='flex gap-x-4 text-center [&>label>input]:size-4'>
+            <label>
+              <input type='radio' name='level' value='1' />
+              <p>1</p>
+            </label>
+            <label>
+              <input type='radio' name='level' value='2' />
+              <p>2</p>
+            </label>
+            <label>
+              <input type='radio' name='level' value='3' />
+              <p>3</p>
+            </label>
+            <label>
+              <input type='radio' name='level' value='4' />
+              <p>4</p>
+            </label>
+            <label>
+              <input type='radio' name='level' value='5' />
+              <p>5</p>
+            </label>
+          </div>
         </div>
 
-        <div>
-          <label htmlFor='translation'>Translation</label>
+        <div className='mb-5'>
+          <label
+            htmlFor='translation'
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+          >
+            Traducción
+          </label>
           <input
             type='text'
-            name='translation'
             id='translation'
             defaultValue={textTranslated || ''}
-            placeholder='Translation'
+            className='block w-full p-4 border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
           />
         </div>
 
-        <div>
-          <label htmlFor='image'>Image</label>
-          {/* <img src='' alt='' /> */}
-        </div>
-
-        <button className='btn btn-primary'>Add Word</button>
+        <button className='btn btn-primary'>Crear Palabra</button>
       </form>
     </div>
   )
