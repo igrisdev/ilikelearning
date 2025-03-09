@@ -1,3 +1,3 @@
-export const useCreate = () => {
-  return <div>useCreate</div>
+export const useCreateWord = () => {
+  return <div>useCreateWord</div>
 }
