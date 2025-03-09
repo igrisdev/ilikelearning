@@ -1,40 +1,39 @@
 import { useConfigStore } from '@stores/configStore'
 import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
-import { useEffect, useState } from 'react'
+import { useTranslateText } from './hooks/useTranslateText'
+
+import { useEffect } from 'react'
 
 export const AddWord = () => {
-  const { words, textTranslated, dictionaryUrl, setTextTranslated } =
-    useSearchStore()
+  const { words, textTranslated } = useSearchStore()
   const { view, setView, language } = useConfigStore()
-  const { addWord } = useLanguagesStore()
+  const { languages, addWordInLanguage } = useLanguagesStore()
+  const { translate } = useTranslateText()
 
   const handleView = () => {
     if (view !== 'IMAGES') setView('IMAGES')
   }
+  useEffect(() => {
+    translate(words || '')
+  }, [words])
 
-  const translateText = async (text: string) => {
-    const url = dictionaryUrl(text)
+  const handleLocaleStorage = () => {
+    const languages = JSON.parse(localStorage.getItem('languages') || '[]')
 
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-
-      if (data.responseData) {
-        console.log('Texto traducido:', data.responseData.translatedText)
-        setTextTranslated(data.responseData.translatedText)
-        return
-      } else {
-        throw new Error('No se pudo traducir el texto')
-      }
-    } catch (error) {
-      throw new Error('Error al conectar con el servidor')
+    if (languages.length === 0) {
+      localStorage.setItem('languages', JSON.stringify({}))
+      return
     }
+
+    return languages
   }
 
   useEffect(() => {
-    translateText(words || 'Bienvenido a I like learning')
-  }, [words])
+    const languages = handleLocaleStorage()
+
+    addWordInLanguage(languages, language)
+  }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -48,9 +47,8 @@ export const AddWord = () => {
       // image: formData.get('image') as string,
     }
 
-    addWord(words, language)
-
-    console.log(words)
+    addWordInLanguage(words, language)
+    localStorage.setItem('languages', JSON.stringify({ languages }))
 
     event.currentTarget.reset()
   }
@@ -95,7 +93,7 @@ export const AddWord = () => {
 
           <div className='flex gap-x-4 text-center [&>label>input]:size-4'>
             <label>
-              <input type='radio' name='level' value='1' />
+              <input type='radio' defaultChecked name='level' value='1' />
               <p>1</p>
             </label>
             <label>
