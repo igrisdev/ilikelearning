@@ -5,28 +5,28 @@ export const Dictionary = () => {
   const { words, dictionaryUrl } = useSearchStore()
   const [text, setText] = useState('')
 
-  const translateText = async (text: string) => {
-    const url = dictionaryUrl(text)
+  // const translateText = async (text: string) => {
+  //   const url = dictionaryUrl(text)
 
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
+  //   try {
+  //     const response = await fetch(url)
+  //     const data = await response.json()
 
-      if (data.responseData) {
-        console.log('Texto traducido:', data.responseData.translatedText)
-        setText(data.responseData.translatedText)
-        return
-      } else {
-        throw new Error('No se pudo traducir el texto')
-      }
-    } catch (error) {
-      throw new Error('Error al conectar con el servidor')
-    }
-  }
+  //     if (data.responseData) {
+  //       console.log('Texto traducido:', data.responseData.translatedText)
+  //       setText(data.responseData.translatedText)
+  //       return
+  //     } else {
+  //       throw new Error('No se pudo traducir el texto')
+  //     }
+  //   } catch (error) {
+  //     throw new Error('Error al conectar con el servidor')
+  //   }
+  // }
 
-  useEffect(() => {
-    translateText(words || 'Bienvenido a I like learning')
-  }, [words])
+  // useEffect(() => {
+  //   translateText(words || 'Bienvenido a I like learning')
+  // }, [words])
 
   // const text = 'casa'
   // fetch(
