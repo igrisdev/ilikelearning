@@ -9,11 +9,13 @@ export const AddWord = () => {
   const { words, textTranslated } = useSearchStore()
   const { view, setView, language } = useConfigStore()
   const { languages, addWordInLanguage } = useLanguagesStore()
+
   const { translate } = useTranslateText()
 
   const handleView = () => {
     if (view !== 'IMAGES') setView('IMAGES')
   }
+
   useEffect(() => {
     translate(words || '')
   }, [words])
@@ -56,7 +58,7 @@ export const AddWord = () => {
   return (
     <div>
       <h2 className='flex justify-between items-center text-2xl font-semibold'>
-        <p className='text-3xl mb-2 font-bold text-white'>
+        <p className='text-3xl mb-2 font-bold text-white truncate'>
           {words ? words : 'Selecciona o Click en la/s palabra/s'}
         </p>
         <button onClick={handleView} className='btn btn-primary'>
@@ -122,13 +124,12 @@ export const AddWord = () => {
           >
             Traducción
           </label>
-          <input
-            type='text'
-            id='translation'
+          <textarea
             name='translation'
+            id='translation'
             defaultValue={textTranslated || ''}
-            className='block w-full p-4 border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white '
-          />
+            className='block w-full p-4 border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white resize-none [field-sizing:content] min-h-10 max-h-40'
+          ></textarea>
         </div>
 
         <button className='btn btn-primary'>Crear Palabra</button>
