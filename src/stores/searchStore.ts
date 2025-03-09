@@ -17,7 +17,9 @@ export const useSearchStore = create<SearchStore>()(set => ({
   searchWord: (words: string) => set({ words }),
   dictionaryUrl: words => {
     let text = encodeURIComponent(words)
-    const url = `https://api.mymemory.translated.net/get?q=${text}&langpair=en|es-CO`
+    // const url = `https://api.mymemory.translated.net/get?q=${text}&langpair=en|es-CO`
+
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=${text}`
 
     return url
   },
