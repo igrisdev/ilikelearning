@@ -3,13 +3,12 @@ import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 import { useTranslateText } from './hooks/useTranslateText'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 export const AddWord = () => {
   const { words, textTranslated } = useSearchStore()
   const { view, setView, language } = useConfigStore()
-  const { languages, addWordInLanguage } = useLanguagesStore()
-
+  const { addWords, addWordInLanguage } = useLanguagesStore()
   const { translate } = useTranslateText()
 
   const handleView = () => {
@@ -19,23 +18,6 @@ export const AddWord = () => {
   useEffect(() => {
     translate(words || '')
   }, [words])
-
-  const handleLocaleStorage = () => {
-    const languages = JSON.parse(localStorage.getItem('languages') || '[]')
-
-    if (languages.length === 0) {
-      localStorage.setItem('languages', JSON.stringify({}))
-      return
-    }
-
-    return languages
-  }
-
-  useEffect(() => {
-    const languages = handleLocaleStorage()
-
-    addWordInLanguage(languages, language)
-  }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -50,10 +32,16 @@ export const AddWord = () => {
     }
 
     addWordInLanguage(words, language)
-    localStorage.setItem('languages', JSON.stringify({ languages }))
-
     event.currentTarget.reset()
   }
+
+  useEffect(() => {
+    const isLanguages = JSON.parse(localStorage.getItem('languages') || '[]')
+
+    if (isLanguages.length > 0) {
+      addWords(isLanguages)
+    }
+  }, [])
 
   return (
     <div>
