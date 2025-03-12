@@ -7,40 +7,38 @@ export interface iWord {
   group: string
 }
 
-interface iLanguage {
+export interface iLanguage {
   name: string
   words: iWord[]
 }
 
 type iLanguagesStore = {
   languages: iLanguage[] | []
+  addWords: (words: iLanguage[]) => void
   addWordInLanguage: (word: iWord, language: string) => void
 }
 
 export const useLanguagesStore = create<iLanguagesStore>()(set => ({
   languages: [],
-
+  addWords: (words: iLanguage[]) => set({ languages: words }),
   addWordInLanguage: (word: iWord, language: string) => {
     set(({ languages }) => {
-      const updatedLanguages = [...languages]
+      const copyLanguages = [...languages]
 
-      const languageIndex = updatedLanguages.findIndex(
-        lang => lang.name === language
-      )
+      const targetLanguage = copyLanguages.find(lang => lang.name === language)
 
-      if (languageIndex !== -1) {
-        updatedLanguages[languageIndex] = {
-          ...updatedLanguages[languageIndex],
-          words: [...updatedLanguages[languageIndex].words, word],
-        }
+      if (targetLanguage) {
+        targetLanguage.words.push(word)
       } else {
-        updatedLanguages.push({
+        copyLanguages.push({
           name: language,
           words: [word],
         })
       }
 
-      return { languages: updatedLanguages }
+      localStorage.setItem('languages', JSON.stringify(copyLanguages))
+
+      return { languages: copyLanguages }
     })
   },
 }))
