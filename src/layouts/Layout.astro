@@ -16,8 +16,13 @@ const { title } = Astro.props as Props
     <title>{title}</title>
   </head>
   <body class='max-h-screen overflow-hidden'>
-    <header class='p-2'>
+    <header class='p-2 flex justify-between items-center'>
       <a href='/' class='text-2xl font-bold'>{title}</a>
+
+      <nav class='px-2'>
+        <!-- <a href='/languages'>Language</a> -->
+        <a href='/book/new' class='btn btn-primary'>Crear Libro</a>
+      </nav>
     </header>
 
     <slot />
