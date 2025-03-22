@@ -1,15 +1,18 @@
+import type { iBook } from './FormCreateBook'
+
 import { useConfigStore } from '@stores/configStore'
 import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 import { useEffect, useState } from 'react'
-import type { iBook } from './FormCreateBook'
 
 export const ContainerText = ({ title }: { title: string }) => {
   const { words, searchWord } = useSearchStore()
-  const { view, setView } = useConfigStore()
+  const { view, setView, language } = useConfigStore()
   const { languages } = useLanguagesStore()
+
   const [selectedWord, setSelectedWord] = useState('')
   const [books, setBooks] = useState<iBook[]>([])
+  const [newDescription, setNewDescription] = useState('')
 
   const handleClick = () => {
     const selection = window.getSelection()
@@ -35,7 +38,7 @@ export const ContainerText = ({ title }: { title: string }) => {
       let after = text.slice(offset).split(/\s+/)
 
       let words = (before.pop() || '') + (after.shift() || '')
-      words = words.replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
+      words = normaliceWord(words)
 
       if (words) {
         searchWord(words)
@@ -58,11 +61,63 @@ export const ContainerText = ({ title }: { title: string }) => {
     }
   }, [])
 
+  const levelWords = (level: number, words: string) => {
+    if (level === 1) {
+      return `<span class='border-b-2 border-red-600'>${words}</span>`
+    } else if (level === 2) {
+      return `<span class='border-b-2 border-red-300'>${words}</span>`
+    } else if (level === 3) {
+      return `<span class='border-b-2 border-yellow-300'>${words}</span>`
+    } else if (level === 4) {
+      return `<span class='border-b-2 border-green-300'>${words}</span>`
+    } else if (level === 5) {
+      return `<span class='border-b-2 border-green-600'>${words}</span>`
+    } else {
+      return words
+    }
+  }
+
+  function normaliceWord(word: string) {
+    return word.toLocaleLowerCase().replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
+  }
+
+  useEffect(() => {
+    const listWords = languages.find(lang => lang.name === language)?.words
+    const textSplit = books[0]?.description.split(' ')
+
+    const newText = textSplit?.map(word => {
+      const findWord = listWords?.find(
+        lang => lang.words.toLocaleLowerCase() === normaliceWord(word)
+      )
+
+      if (findWord) {
+        return levelWords(findWord.level, word)
+      }
+
+      return word
+    })
+
+    if (!newText) return setNewDescription(books[0]?.description)
+
+    setNewDescription(newText?.join(' '))
+  }, [books, languages])
+
   return (
-    <div className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'>
-      <p onClick={handleClick} className='cursor-pointer text-lg'>
-        {books[0]?.description}
-      </p>
-    </div>
+    <>
+      {/* <div className='bg-base-300 p-2 rounded-sm [&>p]:flex [&>p]:flex-wrap [&>p]:gap-x-1 flex flex-col gap-y-2 [&>p>span]:cursor-pointer'>
+        <p
+          onClick={handleClick}
+          className='cursor-pointer text-lg '
+          dangerouslySetInnerHTML={{ __html: newDescription }}
+        />
+      </div> */}
+      <div className='bg-base-300 p-2 rounded-sm flex flex-col gap-y-2'>
+        <p
+          onClick={handleClick}
+          className='cursor-pointer text-lg'
+          dangerouslySetInnerHTML={{ __html: newDescription }}
+        />
+      </div>
+    </>
   )
 }
