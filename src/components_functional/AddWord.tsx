@@ -3,7 +3,7 @@ import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 import { useTranslateText } from './hooks/useTranslateText'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export const AddWord = () => {
   const { words, textTranslated } = useSearchStore()
@@ -112,6 +112,7 @@ export const AddWord = () => {
           >
             Traducción
           </label>
+
           <textarea
             name='translation'
             id='translation'
