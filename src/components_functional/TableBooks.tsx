@@ -14,6 +14,8 @@ export const TableBooks = () => {
     }
   }, [])
 
+  if (!books.length) return <div>No hay libros, crea uno</div>
+
   return (
     <div className='overflow-x-auto'>
       <table className='table table-zebra'>
