@@ -72,50 +72,85 @@ export const FormCreateBook = () => {
     }
 
     createBook(book)
+
+    window.location.href = '/'
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
-      <div>
-        <label htmlFor='title'>Título</label>
-        <input
-          type='text'
-          name='title'
-          id='title'
-          className='border p-2 rounded w-full'
-        />
-      </div>
+    <div className='max-w-4xl mx-auto p-4'>
+      <h2 className='text-xl font-semibold mb-4'>Nuevo Libro</h2>
 
-      <div>
-        <label htmlFor='description'>Descripción</label>
-        <textarea
-          name='description'
-          id='description'
-          className='border p-2 rounded w-full'
-        ></textarea>
-      </div>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
+        <div>
+          <label
+            htmlFor='title'
+            className='block mb-2 text-sm font-medium text-gray-300'
+          >
+            Título
+          </label>
+          <input
+            type='text'
+            id='title'
+            name='title'
+            className='w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
+          />
+        </div>
 
-      <div>
-        <label htmlFor='language'>Idioma</label>
-        <select name='language' id='language' className='border p-2 rounded'>
-          <option value=' '>Seleccionar</option>
-          <option value='English'>English</option>
-        </select>
-      </div>
+        <div>
+          <label
+            htmlFor='description'
+            className='block mb-2 text-sm font-medium text-gray-300'
+          >
+            Descripción
+          </label>
+          <textarea
+            name='description'
+            id='description'
+            className='w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white resize-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
+          ></textarea>
+        </div>
 
-      <div>
-        <label htmlFor='tags'>Tags</label>
-        <input
-          type='text'
-          name='tags'
-          id='tags'
-          className='border p-2 rounded w-full'
-        />
-      </div>
+        <div>
+          <label
+            htmlFor='language'
+            className='block mb-2 text-sm font-medium text-gray-300'
+          >
+            Idioma
+          </label>
+          <select
+            name='language'
+            id='language'
+            className='w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent appearance-none'
+          >
+            <option value='English'>English</option>
+          </select>
+        </div>
 
-      <button type='submit' className='bg-blue-500 text-white p-2 rounded'>
-        Crear Libro
-      </button>
-    </form>
+        <div>
+          <label
+            htmlFor='tags'
+            className='block mb-2 text-sm font-medium text-gray-300'
+          >
+            Tags
+          </label>
+          <input
+            type='text'
+            id='tags'
+            name='tags'
+            placeholder='Separa los tags con comas'
+            className='w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
+          />
+        </div>
+
+        <div className='mt-2'>
+          <button
+            type='submit'
+            className='px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition'
+          >
+            Crear Libro
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
