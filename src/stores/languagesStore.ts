@@ -28,6 +28,15 @@ export const useLanguagesStore = create<iLanguagesStore>()(set => ({
       const targetLanguage = copyLanguages.find(lang => lang.name === language)
 
       if (targetLanguage) {
+        const findIndexWord = targetLanguage.words.findIndex(
+          item => item.words === word.words
+        )
+
+        if (findIndexWord > -1) {
+          targetLanguage.words[findIndexWord] = word
+          return { languages: copyLanguages }
+        }
+
         targetLanguage.words.push(word)
       } else {
         copyLanguages.push({
