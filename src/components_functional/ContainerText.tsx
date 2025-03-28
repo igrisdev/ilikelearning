@@ -9,7 +9,7 @@ function templateBox(words: string, translation: string, color: string) {
   return `<span class='relative group border-b-2 ${color} mr-1'>
               ${words} 
               <article class='z-50 absolute left-0 top-7 overflow-hidden group-hover:inline-block hidden bg-base-200'>
-                <p class='text-md text-center font-semibold px-6 py-1'>${translation}</p>
+                <p class='text-md text-center font-semibold px-6 py-1 w-max'>${translation}</p>
 
                 <div class='max-w-32 w-auto max-h-24 h-full'>
                   <img
