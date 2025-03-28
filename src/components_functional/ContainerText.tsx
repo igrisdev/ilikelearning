@@ -5,6 +5,28 @@ import { useLanguagesStore } from '@stores/languagesStore'
 import { useSearchStore } from '@stores/searchStore'
 import { useEffect, useState } from 'react'
 
+function templateBox(words: string, translation: string, color: string) {
+  return `<span class='relative group border-b-2 ${color} mr-1'>
+              ${words} 
+              <article class='z-50 absolute left-0 top-7 overflow-hidden group-hover:inline-block hidden bg-base-200'>
+                <p class='text-md text-center font-semibold px-6 py-1'>${translation}</p>
+
+                <div class='max-w-32 w-auto max-h-24 h-full'>
+                  <img
+                    src='https://images.pexels.com/photos/10387614/pexels-photo-10387614.jpeg?auto=compress&cs=tinysrgb&h=130'
+                    class='w-full h-full object-cover'
+                    loading='eager'
+                    alt='IMG palabra'
+                  />
+                </div>
+              </article>
+            </span>`
+}
+
+function normaliceWord(word: string) {
+  return word.toLocaleLowerCase().replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
+}
+
 export const ContainerText = ({ title }: { title: string }) => {
   const { words, searchWord } = useSearchStore()
   const { view, setView, language } = useConfigStore()
@@ -61,24 +83,20 @@ export const ContainerText = ({ title }: { title: string }) => {
     }
   }, [])
 
-  const levelWords = (level: number, words: string) => {
+  const levelWords = (level: number, words: string, translation: string) => {
     if (level === 1) {
-      return `<span class='border-b-2 border-red-600'>${words}</span>`
+      return templateBox(words, translation, 'border-red-600')
     } else if (level === 2) {
-      return `<span class='border-b-2 border-red-300'>${words}</span>`
+      return templateBox(words, translation, 'border-red-300')
     } else if (level === 3) {
-      return `<span class='border-b-2 border-yellow-300'>${words}</span>`
+      return templateBox(words, translation, 'border-yellow-300')
     } else if (level === 4) {
-      return `<span class='border-b-2 border-green-300'>${words}</span>`
+      return templateBox(words, translation, 'border-green-300')
     } else if (level === 5) {
-      return `<span class='border-b-2 border-green-600'>${words}</span>`
+      return templateBox(words, translation, 'border-green-600')
     } else {
       return words
     }
-  }
-
-  function normaliceWord(word: string) {
-    return word.toLocaleLowerCase().replace(/[^\wáéíóúüñÁÉÍÓÚÜÑ'-]/g, '')
   }
 
   useEffect(() => {
@@ -90,8 +108,10 @@ export const ContainerText = ({ title }: { title: string }) => {
         lang => lang.words.toLocaleLowerCase() === normaliceWord(word)
       )
 
+      console.log(findWord)
+
       if (findWord) {
-        return levelWords(findWord.level, word)
+        return levelWords(findWord.level, word, findWord.translation)
       }
 
       return word
@@ -117,6 +137,21 @@ export const ContainerText = ({ title }: { title: string }) => {
           className='cursor-pointer text-lg'
           dangerouslySetInnerHTML={{ __html: newDescription }}
         />
+        {/* <span className='border-b-2 border-red-600 relative group'>
+          hello
+          <article className='absolute overflow-hidden group-hover:block hidden bg-base-200'>
+            <p className='text-md text-center font-semibold px-6 py-1'>hola</p>
+
+            <div className='max-w-32 w-auto max-h-24 h-full'>
+              <img
+                src='https://images.pexels.com/photos/10387614/pexels-photo-10387614.jpeg?auto=compress&cs=tinysrgb&h=130'
+                className='w-full h-full object-cover'
+                loading='eager'
+                alt='IMG palabra'
+              />
+            </div>
+          </article>
+        </span> */}
       </div>
     </>
   )
